@@ -30,7 +30,7 @@ public:
     //Доп задания
     inline int min_elem(); //Поиск минимального элемента
     inline int max_elem(); //Поиск максимального элемента
-    inline void file(); //Запись в файл
+
 
     template <class T1>
     friend ostream& operator<< (ostream& ostr, const TStack<T1>& A);
@@ -77,7 +77,7 @@ inline TStack<T>::TStack(int size, bool _f)
     }
     else
     {
-        throw "Error";
+        throw logic_error("Error");
     }
 }
 
@@ -145,19 +145,6 @@ inline int TStack<T>::min_elem()
     return res;
 }
 
-template<typename T>
-inline void TStack<T>::file()
-{
-    ofstream outf("Data.txt");
-    if (!outf)
-    {
-        throw "Error file";
-    }
-    for (int i = 0; i < length; i++)
-    {
-        outf << data[i] << endl;
-    }
-}
 
 template <class T>
 TStack<T>& TStack<T>::operator =(TStack<T>& _v)
@@ -223,7 +210,7 @@ inline void TStack<T>::Resize(int _size)
 {
     if (_size <= 0)
     {
-        throw "Error";
+        throw logic_error("Error");
     }
 
     if (data == NULL)
@@ -257,7 +244,7 @@ inline T TStack<T>::Get()
 {
     if (top <= 0)
     {
-        throw "Error";
+        throw logic_error("Error");
     }
 
     T d = data[top - 1];
